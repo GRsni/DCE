@@ -20,3 +20,6 @@
 
 #User Specific Files
 *.atsuo
+
+#Local files
+/primer_sketch_LED
