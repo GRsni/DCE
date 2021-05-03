@@ -58,13 +58,14 @@ void set_TIMER0_ms(uint16_t ms, uint8_t *ticks, uint8_t *remainder)
 
 void init_TIMER1_INT()
 {
-	TIMSK1 |= (1<<TOIE1);
+	TIMSK1 |= (1<<OCIE1A);
+	TCNT1=0;
 }
 
 void init_TIMER1_polling()
 {
 	TCCR1B |= (1<<CS10);
-	TCNT0 = 0;
+	TCNT1 = 0;
 }
 
 void init_TIMER1_prescaler(uint16_t prescaler)
@@ -93,10 +94,10 @@ void init_TIMER1_prescaler(uint16_t prescaler)
 }
 
 
-void set_TIMER1_value(uint8_t value)
+void set_TIMER1_value(uint16_t value)
 {
-	TCNT1H=(value>>8);
-	TCNT1L=(value);
+	OCR1AH=(value>>8);
+	OCR1AL=(value);
 }
 
 void set_TIMER1_ms(uint16_t ms, uint8_t *ticks, uint8_t *remainder)
@@ -106,16 +107,15 @@ void set_TIMER1_ms(uint16_t ms, uint8_t *ticks, uint8_t *remainder)
 
 void set_TIMER1_CTC_mode(CTC_MODE_t mode)
 {
-	TCCR0A |=(1<<WGM01);
 	switch(mode){
 		case TOGGLE:
-		TCCR0A |= (1<<COM0A0);
+		TCCR1A |= (1<<COM1A0);
 		break;
 		case CLEAR:
-		TCCR0A |= (1<<COM0A1);
+		TCCR1A |= (1<<COM1A1);
 		break;
 		case SET:
-		TCCR0A |= (1<<COM0A1)|(1<<COM0A0);
+		TCCR1A |= (1<<COM1A1)|(1<<COM1A0);
 		break;
 	}
 }
@@ -127,5 +127,5 @@ void set_TIMER1_CTC_comp_value(uint16_t value)
 
 void set_TIMER1_CTC_start()
 {
-	
+	TCCR1B|=(1<<WGM12);
 }

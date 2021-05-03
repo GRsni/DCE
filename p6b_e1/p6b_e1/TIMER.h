@@ -30,7 +30,7 @@ void init_TIMER1_polling();
 
 void init_TIMER1_prescaler();
 
-void set_TIMER1_value(uint8_t value);
+void set_TIMER1_value(uint16_t value);
 
 void set_TIMER1_ms(uint16_t ms, uint8_t *ticks, uint8_t *remainder);
 

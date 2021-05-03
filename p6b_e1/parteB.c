@@ -42,3 +42,4 @@ int main(void)
 void init_LED_ports(){
 	DDRB |= (1<<LED);
 }
+
