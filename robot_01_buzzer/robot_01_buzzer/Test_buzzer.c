@@ -12,49 +12,26 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-#define BUZZER 2
-#define SOUND_INTERVAL_S 2
+#include "BUZZER.h"
 
-
-static inline void init_buzzer_port()
-{
-	DDRB |= (1<<BUZZER);
-}
 
 int main(void)
 {
-	uint16_t sound_interval = 200;
-	uint8_t count=0;
+	//------------------ CONFIGURACION DE PUERTOS ----------------
+	BUZZER_init_port();
 	
-	init_buzzer_port();
+	
+	//------------------ BUCLE PRINCIPAL -------------------------
 	while (1)
 	{
-		for(int i=0; i<sound_interval; i++)
-		{
-			PORTB ^=(1<<BUZZER);
-			_delay_us(2000);
-		}
-		
-		for(int i=0; i<sound_interval; i++)
-		{
-			PORTB ^=(1<<BUZZER);
-			_delay_us(1500);
-			
-		}
-		
-		
-		for(int i=0; i<sound_interval; i++)
-		{
-			PORTB ^=(1<<BUZZER);
-			_delay_us(1000);
-		}
-		
-		
-		for(int i=0; i<sound_interval; i++)
-		{
-			PORTB ^=(1<<BUZZER);
-			_delay_us(1600);
-		}
+		BUZZER_play_note(1, NOTE_DO);
+		BUZZER_play_note(1, NOTE_RE);
+		BUZZER_play_note(1, NOTE_MI);
+		BUZZER_play_note(1, NOTE_FA);
+		BUZZER_play_note(1, NOTE_SOL);
+		BUZZER_play_note(1, NOTE_LA);
+		BUZZER_play_note(1, NOTE_SI);
+		BUZZER_play_note(1, NOTE_DO_UP);
 		
 	}
 }
