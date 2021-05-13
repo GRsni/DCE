@@ -120,7 +120,7 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="main.c">
+    <None Include="robot_01_buzzer.c">
       <SubType>compile</SubType>
     </None>
     <Compile Include="BUZZER.h">
