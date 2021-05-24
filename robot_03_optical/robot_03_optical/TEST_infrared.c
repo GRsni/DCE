@@ -54,7 +54,7 @@ int main(void)
 		
 		uint8_t channel=option_to_IR_channel(option); //Se transforma el caracter en el canal del IR
 		m_usb_tx_string("Leyendo IR ");
-		m_usb_tx_int(channel);
+		m_usb_tx_uint(channel);
 		m_usb_tx_string("\n\r");
 		
 		switch_ADC_channel(channel, ADC_IS_POLLING); //Se cambia el ADC al canal correspondiente

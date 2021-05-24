@@ -1,7 +1,7 @@
 #include "ADC.h"
 
 
-void switch_ADC_channel(uint8_t channel, bool mode)
+void switch_ADC_channel(uint8_t channel, uint8_t mode)
 {
 	zero_ADC();
 	if(mode)

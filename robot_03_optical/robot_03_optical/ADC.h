@@ -9,7 +9,6 @@
 */
 
 #include <avr/io.h>
-#include <stdbool.h>
 
 #ifndef ADC_H
 #define ADC_H
@@ -59,7 +58,7 @@ static inline void zero_ADC()
 *
 * @return	No devuelve nada
 */
-void switch_ADC_channel(uint8_t channel, bool mode);
+void switch_ADC_channel(uint8_t channel, uint8_t mode);
 
 /*
 * Funcion para leer un valor a traves del ADC 
