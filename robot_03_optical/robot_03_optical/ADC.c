@@ -1,25 +1,10 @@
 #include "ADC.h"
 
-void init_ADC_Polling()
-{
-	ADCSRA|=(1<<ADEN)|(1<<ADPS2)|(1<<ADPS1)|(1<<ADPS0);
-}
 
-void init_ADC_INT()
-{
-	ADCSRA|=(1<<ADEN)|(1<<ADIE)|(1<<ADPS2)|(1<<ADPS1)|(1<<ADPS0);
-}
-
-void zero_ADC()
-{
-	ADCSRA=0x00;
-	ADMUX=0x00;
-}
-
-void switch_ADC_channel(uint8_t channel, bool isPolling)
+void switch_ADC_channel(uint8_t channel, bool mode)
 {
 	zero_ADC();
-	if(isPolling)
+	if(mode)
 	{
 		init_ADC_Polling();
 	}
