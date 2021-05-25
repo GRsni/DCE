@@ -46,9 +46,9 @@ static inline void BUZZER_init_port()
 *	
 * @result No devuelve nada
 */
-static inline void BUZZER_play_note(uint8_t seconds, uint16_t note){
-	uint32_t cycles=seconds*1000000/note;
-	for(int i=0; i<cycles; i++){
+static inline void BUZZER_play_note(uint32_t ms, uint16_t note){
+	uint32_t cycles=ms*1000/note;
+	for(uint32_t i=0; i<cycles; i++){
 		BUZZER_PORT ^= (1<<BUZZER_PIN);
 		_delay_us(note);
 	}

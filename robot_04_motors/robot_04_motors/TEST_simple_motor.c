@@ -17,9 +17,7 @@ int main(void)
 	MOTOR_init();
 	
 	
-	MOTOR_stop();
-	_delay_ms(1000);
-	MOTOR_start();
+	MOTOR_start_sequence();
 	while (1)
 	{
 		MOTOR_forwards(100);

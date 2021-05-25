@@ -42,22 +42,22 @@ void MOTOR_turn_left()
 {
 	PORTD |= (1<<WHEEL_LEFT);
 	PORTE &= (0<<WHEEL_RIGHT);
-	MOTOR_set_wheel_speed(40);
-	_delay_ms(100);
+	MOTOR_set_wheel_speed(MOTOR_TURNING_SPEED);
 }
 
 void MOTOR_turn_right()
 {
 	PORTD &= (0<<WHEEL_LEFT);
 	PORTE |= (1<<WHEEL_RIGHT);
-	MOTOR_set_wheel_speed(40);
-	_delay_ms(100);
+	MOTOR_set_wheel_speed(MOTOR_TURNING_SPEED);
 }
 
 void MOTOR_test()
 {
 	MOTOR_forwards(50);
 	_delay_ms(500);
+	MOTOR_stop();
+	_delay_ms(1000);
 	MOTOR_backwards(50);
 	_delay_ms(500);
 	MOTOR_stop();
@@ -67,5 +67,5 @@ void MOTOR_test()
 	_delay_ms(1000);
 	MOTOR_turn_right();
 	MOTOR_stop();
-	_delay_ms(1000);
+	_delay_ms(500);
 }

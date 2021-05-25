@@ -132,9 +132,9 @@
     <None Include="Design_motor.c">
       <SubType>compile</SubType>
     </None>
-    <Compile Include="TEST_complete_motor.c">
+    <None Include="TEST_complete_motor.c">
       <SubType>compile</SubType>
-    </Compile>
+    </None>
     <Compile Include="MOTOR.c">
       <SubType>compile</SubType>
     </Compile>
@@ -144,6 +144,21 @@
     <None Include="TEST_simple_motor.c">
       <SubType>compile</SubType>
     </None>
+    <Compile Include="m_general.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="m_usb.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="m_usb.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="OPTICAL.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="siguelinea.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="TIMER.h">
       <SubType>compile</SubType>
     </Compile>

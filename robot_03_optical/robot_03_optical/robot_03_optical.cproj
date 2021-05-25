@@ -129,12 +129,12 @@
     <Compile Include="BUZZER.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="main.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <None Include="TEST_infrared.c">
+    <None Include="main.c">
       <SubType>compile</SubType>
     </None>
+    <Compile Include="TEST_infrared.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="m_general.h">
       <SubType>compile</SubType>
     </Compile>

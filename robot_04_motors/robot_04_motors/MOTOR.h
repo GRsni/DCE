@@ -21,6 +21,8 @@
 #define WHEEL_LEFT PORTD6
 #define WHEEL_RIGHT PORTE6
 
+#define MOTOR_TURNING_SPEED 20
+
 void MOTOR_init();
 
 static inline void MOTOR_stop()
@@ -35,6 +37,14 @@ static inline void MOTOR_start()
 	DDRE |= (1<<WHEEL_RIGHT);
 	
 	start_TIMER4_PWM_Phase();
+}
+
+
+static inline void MOTOR_start_sequence()
+{
+	MOTOR_stop();
+	_delay_ms(1000);
+	MOTOR_start();
 }
 
 static inline uint8_t calc_speed(uint8_t percent)
