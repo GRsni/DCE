@@ -22,7 +22,7 @@ static inline void init_TIMER4D_PWM_Phase()
 
 static inline void init_TIMER4_freq_div()
 {
-	TCCR4B |= (7<<CS40);
+	TCCR4B |= (1<<CS42)|(1<<CS41)|(1<<CS40);
 }
 
 static inline void init_TIMER4_WFG_mode()
@@ -35,12 +35,12 @@ static inline void start_TIMER4_PWM_Phase()
 	TCNT4=0;
 }
 
-void duty_TIMER4A_PWM_Phase(uint8_t valueOCR0A)
+static inline void duty_TIMER4A_PWM_Phase(uint8_t valueOCR0A)
 {
 	OCR4A = 255 - valueOCR0A;
 }
 
-void duty_TIMER4D_PWM_Phase(uint8_t valueOCR4D)
+static inline void duty_TIMER4D_PWM_Phase(uint8_t valueOCR4D)
 {
 	OCR4D = valueOCR4D;
 }
