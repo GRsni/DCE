@@ -18,17 +18,20 @@
 
 void follow_line();
 
+uint16_t outside_counter=0;
+
 int main(void)
 {
 	MOTOR_init();
 	BUZZER_init_port();
 	OPTICAL_init();
-	//m_usb_init();
-	//while(!m_usb_isconnected());
 	
 	
 	MOTOR_start_sequence();
-	BUZZER_play_note(1000, NOTE_LA);
+	BUZZER_play_note(500, NOTE_DO);
+	_delay_ms(150);
+	BUZZER_play_note(500, NOTE_DO);
+	_delay_ms(150);
 	while (1)
 	{
 		follow_line();
@@ -37,21 +40,15 @@ int main(void)
 
 void follow_line()
 {
-	uint16_t sensor_most_left=OPTICAL_read_sensor(1);
 	uint16_t sensor_left=OPTICAL_read_sensor(2);
 	uint16_t sensor_center=OPTICAL_read_sensor(3);
 	uint16_t sensor_right=OPTICAL_read_sensor(4);
-	uint16_t sensor_most_right=OPTICAL_read_sensor(5);
-	/*m_usb_tx_string("Izq: ");
-	m_usb_tx_uint(sensor_left);
-	m_usb_tx_string(" centro: ");
-	m_usb_tx_uint(sensor_center);
-	m_usb_tx_string("  der: ");
-	m_usb_tx_uint(sensor_right);
-	m_usb_tx_string(". \n\r");*/
+	
 	
 	if(sensor_left < BLACK_THRESHOLD && sensor_center && BLACK_THRESHOLD && sensor_right <BLACK_THRESHOLD) //If all 3 main sensors read black, use most external sensors
 	{
+		uint16_t sensor_most_left=OPTICAL_read_sensor(1);
+		uint16_t sensor_most_right=OPTICAL_read_sensor(5);
 		if(sensor_most_left <BLACK_THRESHOLD)
 		{
 			MOTOR_turn_left();
@@ -71,17 +68,23 @@ void follow_line()
 		{
 			MOTOR_forwards(MOTOR_SPEED);
 		}
-		else if(sensor_left> WHITE_THRESHOLD && sensor_center > WHITE_THRESHOLD && sensor_right< WHITE_THRESHOLD)//In any other case, beep and stop
+		else if(sensor_left> WHITE_THRESHOLD && sensor_center > WHITE_THRESHOLD && sensor_right> WHITE_THRESHOLD)//In any other case, beep and stop
 		{
 			MOTOR_backwards(10);
-			_delay_ms(10);
-			/*MOTOR_stop();
-			for(int i=0; i<3; i++)
+			outside_counter++;
+			
+			if(outside_counter>1000)
 			{
+				MOTOR_stop();
+				for(int i=0; i<3; i++)
+				{
 				BUZZER_play_note(500, NOTE_DO_UP);
 				_delay_ms(100);
+				}
+				_delay_ms(5000);
+				outside_counter=0;
 			}
-			_delay_ms(5000);*/
+			
 		}
 	}
 }

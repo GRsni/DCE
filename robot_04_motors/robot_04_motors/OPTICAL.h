@@ -13,7 +13,7 @@
 #ifndef OPTICAL_H
 #define OPTICAL_H
 
-#define WHITE_THRESHOLD 950
+#define WHITE_THRESHOLD 900
 #define BLACK_THRESHOLD 800
 
 #define IR0_CHANNEL 7

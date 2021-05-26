@@ -33,7 +33,7 @@ int main()
 		switch(current_state)
 		{
 			case INIT:
-			BUZZER_play_note(1, NOTE_SOL);
+			BUZZER_play_note(1000, NOTE_SOL);
 			current_state=TEST;
 			break;
 			case TEST:
@@ -43,7 +43,7 @@ int main()
 			case STOP:
 			_delay_ms(3000);
 			for(beep_counter=0; beep_counter<3; beep_counter++){
-				BUZZER_play_note(1, NOTE_DO_UP);
+				BUZZER_play_note(1000, NOTE_DO_UP);
 				_delay_ms(150);
 			}
 			current_state=INIT;
