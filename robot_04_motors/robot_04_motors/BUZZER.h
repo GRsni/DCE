@@ -29,12 +29,25 @@
 /*
 * Función de configuracion de puerto de altavoz como salida
 *
-* 
+*
 * @result No devuelve nada
 */
 static inline void BUZZER_init_port()
 {
 	DDRB |= (1<<BUZZER_PIN);
+	init_TIMER0_CTC();
+	init_TIMER1_CTC();
+}
+
+
+static inline void BUZZER_timer_play_note(uint32_t ms, uint16_t note)
+{
+	uint8_t freq_value = (uint8_t)(note / 16);
+	duty_TIMER0_Phase(freq_value);
+	uint16_t timer_value = (uint16_t)(ms*1000/64);
+	duty_TIMER1_Phase(timer_value);
+	start_TIMER0_CTC();
+	start_TIMER1_CTC();
 }
 
 /*
@@ -43,7 +56,7 @@ static inline void BUZZER_init_port()
 *
 * @param	seconds		Numero de segundos a reproducir el tono
 * @param	note		Tono a reproducir
-*	
+*
 * @result No devuelve nada
 */
 static inline void BUZZER_play_note(uint32_t ms, uint16_t note){
