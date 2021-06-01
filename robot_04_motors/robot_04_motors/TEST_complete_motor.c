@@ -1,8 +1,11 @@
 /*
-* robot_04_motors.c
+* TEST_complete_motor.c
 *
+* Programa de testeo de la funcionalidad
+* completa de los motores del robot 2WD MiniQ
+* 
 * Created: 24/05/2021 10:30:25
-* Author : DCE
+* Author : Santiago Mas
 */
 
 #define F_CPU 16000000L
@@ -14,8 +17,10 @@
 
 int main(void)
 {
+	//------ Configuracion de puertos --------
 	MOTOR_init();
 	
+	//--------- Programa principal -----------
 	MOTOR_start_sequence();
 	while (1)
 	{

@@ -1,7 +1,8 @@
 /*
 * BUZZER.h
 *
-* Librería header-only para el control del altavoz en el robot 2WD MiniQ
+* Librería header-only para el control del 
+* altavoz en el robot 2WD MiniQ
 *
 * Created: 13/05/2021 20:59:12
 *  Author: Santiago Mas
@@ -14,9 +15,11 @@
 #ifndef BUZZER_H
 #define BUZZER_H
 
+//Definicion de puerto y pin del altavoz
 #define BUZZER_PIN 2
 #define BUZZER_PORT PORTB
 
+//Definicion de constantes de periodo de sonidos
 #define NOTE_DO 1915
 #define NOTE_RE 1706
 #define NOTE_MI	1519
@@ -42,6 +45,8 @@ static inline void BUZZER_init_port()
 
 static inline void BUZZER_timer_play_note(uint32_t ms, uint16_t note)
 {
+	init_TIMER0_CTC();
+	init_TIMER1_CTC();
 	uint8_t freq_value = (uint8_t)(note / 16);
 	duty_TIMER0_Phase(freq_value);
 	uint16_t timer_value = (uint16_t)(ms*1000/64);

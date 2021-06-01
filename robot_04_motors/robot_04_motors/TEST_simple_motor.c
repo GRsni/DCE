@@ -1,8 +1,11 @@
 /*
  * TEST_simple_motor.c
  *
+ * Programa inicial de pruebas para el control
+ * de los motores DC del robot 2WD MiniQ
+ *
  * Created: 25/05/2021 19:29:59
- *  Author: yasteer
+ *  Author: Santiago Mas
  */ 
 
 #define F_CPU 16000000L
@@ -14,9 +17,10 @@
 
 int main(void)
 {
+	//-------- Configuracion de puertos -----------
 	MOTOR_init();
 	
-	
+	//---------- Programa principal ---------------
 	MOTOR_start_sequence();
 	while (1)
 	{

@@ -1,8 +1,11 @@
 /*
-* main.c
+* Design_motor.c
+*
+* Programa para el control del robot empleando 
+* una maquina de estado
 *
 * Created: 25/05/2021 14:37:06
-*  Author: yasteer
+*  Author: Santiago Mas
 */
 
 #define F_CPU 16000000L
@@ -11,7 +14,9 @@
 #include "MOTOR.h"
 #include "BUZZER.h"
 
-
+//Definicion de estados de la maquina de estados
+//	INIT -> TEST -> STOP -
+//   ^-------------------|
 typedef enum state_t{
 	INIT,
 	TEST,
@@ -22,14 +27,15 @@ int main()
 {
 	STATES current_state= INIT;
 	uint8_t beep_counter=0;
-
+	
+	//------- Configuracion de puertos -----------
 	BUZZER_init_port();
 	MOTOR_init();
 	
-	
+	//-------- Programa principal -----------------
 	MOTOR_start_sequence();
 	while(1){
-
+		//---- Codigo de maquina de estado
 		switch(current_state)
 		{
 			case INIT:
