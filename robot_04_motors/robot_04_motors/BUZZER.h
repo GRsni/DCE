@@ -42,7 +42,15 @@ static inline void BUZZER_init_port()
 	init_TIMER1_CTC();
 }
 
-
+/*
+* Funcion de generacion de tono empleando los temporizadores
+* hardware del MCU ATmega32U4 (recomendada)
+*
+* @param	ms		Milisegundos de duracion del tono
+* @param	note	Tono a reproducir
+*
+* @return	No devuelve nada
+*/
 static inline void BUZZER_timer_play_note(uint32_t ms, uint16_t note)
 {
 	init_TIMER0_CTC();
@@ -59,10 +67,10 @@ static inline void BUZZER_timer_play_note(uint32_t ms, uint16_t note)
 *
 * Función de generacion de tono
 *
-* @param	seconds		Numero de segundos a reproducir el tono
+* @param	ms			Milisegundos de duracion del tono
 * @param	note		Tono a reproducir
 *
-* @result No devuelve nada
+* @result	No devuelve nada
 */
 static inline void BUZZER_play_note(uint32_t ms, uint16_t note){
 	uint32_t cycles=ms*1000/note;
